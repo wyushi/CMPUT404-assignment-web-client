@@ -62,14 +62,13 @@ class HTTPClient(object):
 
     def createReponse(self, sock):
         data = self.recvall(sock)
-        print 'clent: %s' % data
         header = self.get_headers(data)
         body = self.get_body(data)
         code = self.get_code(header)
         return HTTPResponse(code, body)
 
     def GET(self, url, args=None):
-        req = HTTPRequest(url)
+        req = HTTPRequest(url, 'GET', args)
         connection = req.request()
         res = self.createReponse(connection)
         return res
@@ -90,13 +89,11 @@ class HTTPClient(object):
 if __name__ == "__main__":
     client = HTTPClient()
     command = "GET"
-    url = 'http://www.cs.ualberta.ca/'
-    print 'URL: ', url
-    print client.command(url, 'GET', None)
-    # if (len(sys.argv) <= 1):
-    #     help()
-    #     sys.exit(1)
-    # elif (len(sys.argv) == 3):
-    #     print client.command( sys.argv[1], sys.argv[2] )
-    # else:
-    #     print client.command( command, sys.argv[1] )    
+    if (len(sys.argv) <= 1):
+        help()
+        sys.exit(1)
+    if (len(sys.argv) == 3):
+        print client.command(sys.argv[2], sys.argv[1])
+    else:
+        print client.command(sys.argv[2])
+

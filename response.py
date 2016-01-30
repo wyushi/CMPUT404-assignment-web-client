@@ -53,3 +53,9 @@ class HTTPResponse(object):
     def __init__(self, code=200, body=""):
         self.code = code
         self.body = body
+
+    def __str__(self):
+        return '%d %s\n%s' % (self.code, CODES[self.code], self.body or '[empty]')
+
+
+
