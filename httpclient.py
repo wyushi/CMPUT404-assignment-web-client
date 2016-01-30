@@ -81,7 +81,6 @@ class HTTPClient(object):
         return res
 
     def command(self, url, command="GET", args=None):
-        # print '<%s, %s, %s>' % (url, command, args)
         if (command == "POST"):
             return self.POST( url, args )
         else:
@@ -91,7 +90,9 @@ class HTTPClient(object):
 if __name__ == "__main__":
     client = HTTPClient()
     command = "GET"
-    print client.command('http://127.0.0.1:3000/', 'POST', None)
+    url = 'http://www.cs.ualberta.ca/'
+    print 'URL: ', url
+    print client.command(url, 'GET', None)
     # if (len(sys.argv) <= 1):
     #     help()
     #     sys.exit(1)
