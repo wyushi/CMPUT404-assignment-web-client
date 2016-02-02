@@ -28,6 +28,7 @@ class HTTPRequest(object):
         if self.method == 'GET':
             self.path += (self.query_params(args) or '')
         elif self.method == 'POST':
+            self.path += self.query
             self.data = urlencode(args or '')
             
 
